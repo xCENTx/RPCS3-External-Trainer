@@ -3,8 +3,6 @@ using Memory;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Numerics;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Net;
 using System.Drawing;
 
 namespace RPCS3_External_Trainer_SOURCE
@@ -63,7 +61,6 @@ namespace RPCS3_External_Trainer_SOURCE
             {
                 return;
             }
-
             //Reads Current Souls and displays the value via Label
             BigInteger parseSoulsAddr = BigInteger.Parse("3301E8098", NumberStyles.HexNumber);
             var SoulsAddr = parseSoulsAddr.ToString("X");
@@ -78,7 +75,13 @@ namespace RPCS3_External_Trainer_SOURCE
             {
                 return;
             }
-
+            BigInteger parseSoulsAddr = BigInteger.Parse("3301E8098", NumberStyles.HexNumber);
+            string hex = $"0x{parseSoulsAddr:X8}";
+            int intValue = Convert.ToInt32(SendSouls_textBox.Text);
+            byte[] intBytes = BitConverter.GetBytes(intValue);
+            Array.Reverse(intBytes);
+            byte[] result = intBytes;
+            m.WriteBytes(hex, intBytes);
         }
     }
 }

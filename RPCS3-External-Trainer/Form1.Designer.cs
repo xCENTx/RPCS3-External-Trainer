@@ -37,6 +37,8 @@ namespace RPCS3_External_Trainer_SOURCE
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.Souls_Button = new System.Windows.Forms.Button();
+            this.SendSouls_textBox = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -56,9 +58,10 @@ namespace RPCS3_External_Trainer_SOURCE
             // CurrentSouls_Label
             // 
             this.CurrentSouls_Label.AutoSize = true;
+            this.CurrentSouls_Label.Dock = System.Windows.Forms.DockStyle.Top;
             this.CurrentSouls_Label.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CurrentSouls_Label.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.CurrentSouls_Label.Location = new System.Drawing.Point(2, 25);
+            this.CurrentSouls_Label.Location = new System.Drawing.Point(0, 0);
             this.CurrentSouls_Label.Name = "CurrentSouls_Label";
             this.CurrentSouls_Label.Size = new System.Drawing.Size(198, 24);
             this.CurrentSouls_Label.TabIndex = 4;
@@ -108,12 +111,31 @@ namespace RPCS3_External_Trainer_SOURCE
             this.panel2.Size = new System.Drawing.Size(83, 50);
             this.panel2.TabIndex = 7;
             // 
+            // Souls_Button
+            // 
+            this.Souls_Button.Location = new System.Drawing.Point(117, 27);
+            this.Souls_Button.Name = "Souls_Button";
+            this.Souls_Button.Size = new System.Drawing.Size(124, 23);
+            this.Souls_Button.TabIndex = 8;
+            this.Souls_Button.Text = "SEND SOULS";
+            this.Souls_Button.UseVisualStyleBackColor = true;
+            this.Souls_Button.Click += new System.EventHandler(this.Souls_Button_Click);
+            // 
+            // SendSouls_textBox
+            // 
+            this.SendSouls_textBox.Location = new System.Drawing.Point(11, 29);
+            this.SendSouls_textBox.Name = "SendSouls_textBox";
+            this.SendSouls_textBox.Size = new System.Drawing.Size(100, 20);
+            this.SendSouls_textBox.TabIndex = 9;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(32)))), ((int)(((byte)(35)))));
             this.ClientSize = new System.Drawing.Size(274, 96);
+            this.Controls.Add(this.SendSouls_textBox);
+            this.Controls.Add(this.Souls_Button);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.CurrentSouls_Label);
@@ -139,6 +161,8 @@ namespace RPCS3_External_Trainer_SOURCE
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button Souls_Button;
+        private System.Windows.Forms.TextBox SendSouls_textBox;
     }
 }
 
