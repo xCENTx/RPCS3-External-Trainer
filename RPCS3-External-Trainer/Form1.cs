@@ -124,6 +124,10 @@ namespace RPCS3_External_Trainer_SOURCE
                 InfiniteHealthHack();
                 Thread.Sleep(125);
                 InfiniteStamina();
+                Thread.Sleep(125);
+                InfiniteStamina2();
+                Thread.Sleep(125);
+                InfiniteStamina3();
                 InfiniteMagic();
                 D3BUG_Indicator.BackColor = Color.FromArgb(0, 169, 0);
                 InfiniteHealth_Indicator.BackColor = CAUTION;
@@ -141,6 +145,10 @@ namespace RPCS3_External_Trainer_SOURCE
                 DISABLE_InfinitHealthHack();
                 Thread.Sleep(125);
                 DISABLE_InfiniteStamina();
+                Thread.Sleep(125);
+                DISABLE_InfiniteStamina2();
+                Thread.Sleep(125);
+                DISABLE_InfiniteStamina3();
                 DISABLE_InfiniteMagic();
                 HackActive = false;
             }
@@ -277,6 +285,52 @@ namespace RPCS3_External_Trainer_SOURCE
             m.WriteBytes(FinalResult2.ToString("X"), intBytes2);
         }
 
+        public async void InfiniteStamina2()
+        {
+            if (!m.OpenProcess(RPCS3PROCESSNAME))
+            {
+                return;
+            }
+            //AoB Scan & Store Result
+            IEnumerable<long> AoBScanResults = await m.AoBScan("89 84 19 D4 03 00 00 7E 09 48 83 C4 28", false, true);
+            long SingleAoBScanResult = AoBScanResults.FirstOrDefault();
+            var FinalResult = SingleAoBScanResult;
+            var FinalResult2 = FinalResult + 0x4;
+
+            // Write 
+            uint intValue = 0x90909090;
+            uint intValue2 = 0x9090907E;
+            byte[] intBytes = BitConverter.GetBytes(intValue);
+            byte[] intBytes2 = BitConverter.GetBytes(intValue2);
+            Array.Reverse(intBytes2);
+            Array.Reverse(intBytes);
+            m.WriteBytes(FinalResult.ToString("X"), intBytes);
+            m.WriteBytes(FinalResult2.ToString("X"), intBytes2);
+        }
+
+        public async void InfiniteStamina3()
+        {
+            if (!m.OpenProcess(RPCS3PROCESSNAME))
+            {
+                return;
+            }
+            //AoB Scan & Store Result
+            IEnumerable<long> AoBScanResults = await m.AoBScan("89 94 18 D4 03 00 00 89 8D 74 04 00 00 48 83 C4 28 49 FF E0 BA D8 FC 26 00", false, true);
+            long SingleAoBScanResult = AoBScanResults.FirstOrDefault();
+            var FinalResult = SingleAoBScanResult;
+            var FinalResult2 = FinalResult + 0x4;
+
+            // Write 
+            uint intValue = 0x90909090;
+            uint intValue2 = 0x90909089;
+            byte[] intBytes = BitConverter.GetBytes(intValue);
+            byte[] intBytes2 = BitConverter.GetBytes(intValue2);
+            Array.Reverse(intBytes2);
+            Array.Reverse(intBytes);
+            m.WriteBytes(FinalResult.ToString("X"), intBytes);
+            m.WriteBytes(FinalResult2.ToString("X"), intBytes2);
+        }
+
         public async void DISABLE_InfiniteStamina()
         {
             if (!m.OpenProcess(RPCS3PROCESSNAME))
@@ -300,6 +354,51 @@ namespace RPCS3_External_Trainer_SOURCE
             m.WriteBytes(FinalResult2.ToString("X"), intBytes2);
         }
 
+        public async void DISABLE_InfiniteStamina2()
+        {
+            if (!m.OpenProcess(RPCS3PROCESSNAME))
+            {
+                return;
+            }
+            //AoB Scan & Store Result
+            IEnumerable<long> AoBScanResults = await m.AoBScan("90 90 90 90 90 90 90 7E 09 48 83 C4 28", false, true);
+            long SingleAoBScanResult = AoBScanResults.FirstOrDefault();
+            var FinalResult = SingleAoBScanResult;
+            var FinalResult2 = FinalResult + 0x4;
+
+            // Write 
+            uint intValue = 0x898419D4;
+            uint intValue2 = 0x0300007E;
+            byte[] intBytes = BitConverter.GetBytes(intValue);
+            byte[] intBytes2 = BitConverter.GetBytes(intValue2);
+            Array.Reverse(intBytes2);
+            Array.Reverse(intBytes);
+            m.WriteBytes(FinalResult.ToString("X"), intBytes);
+            m.WriteBytes(FinalResult2.ToString("X"), intBytes2);
+        }
+
+        public async void DISABLE_InfiniteStamina3()
+        {
+            if (!m.OpenProcess(RPCS3PROCESSNAME))
+            {
+                return;
+            }
+            //AoB Scan & Store Result
+            IEnumerable<long> AoBScanResults = await m.AoBScan("90 90 90 90 90 90 90 89 8D 74 04 00", false, true);
+            long SingleAoBScanResult = AoBScanResults.FirstOrDefault();
+            var FinalResult = SingleAoBScanResult;
+            var FinalResult2 = FinalResult + 0x4;
+
+            // Write 
+            uint intValue = 0x898419D4;
+            uint intValue2 = 0x03000089;
+            byte[] intBytes = BitConverter.GetBytes(intValue);
+            byte[] intBytes2 = BitConverter.GetBytes(intValue2);
+            Array.Reverse(intBytes2);
+            Array.Reverse(intBytes);
+            m.WriteBytes(FinalResult.ToString("X"), intBytes);
+            m.WriteBytes(FinalResult2.ToString("X"), intBytes2);
+        }
 
         //Fully Functional
         public async void DISABLE_InfinitHealthHack()
@@ -533,6 +632,10 @@ namespace RPCS3_External_Trainer_SOURCE
             if ((!InfiniteStaminaActive) && (!HackActive))
             {
                 InfiniteStamina();
+                Thread.Sleep(100);
+                InfiniteStamina2();
+                Thread.Sleep(100);
+                InfiniteStamina3();
                 InfiniteStaminaActive = true;
                 InfiniteStamina_Indicator.BackColor = Color.FromArgb(0, 169, 0);
                 D3BUG_Indicator.BackColor = Color.FromArgb(169, 169, 0);
@@ -540,6 +643,10 @@ namespace RPCS3_External_Trainer_SOURCE
             else if (!HackActive)
             {
                 DISABLE_InfiniteStamina();
+                Thread.Sleep(100);
+                DISABLE_InfiniteStamina2();
+                Thread.Sleep(100);
+                DISABLE_InfiniteStamina3();
                 InfiniteStaminaActive = false;
             }
         }
